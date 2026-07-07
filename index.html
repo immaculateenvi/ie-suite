@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>IM Suite · Smart Academic Ecosystem</title>
+  <meta name="description" content="IM Suite — study tools, CBT exam prep, engineering summaries & academic productivity. Enter IM Study, IM Plus, or IM Summary.">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(145deg, #fefefe 0%, #f6f9fc 100%);
+      color: #111827;
+      line-height: 1.4;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* logo + hero */
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .logo-wrapper {
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .logo-img {
+      max-width: 100px;
+      height: auto;
+      border-radius: 32px;
+      background: #ffffff;
+      box-shadow: 0 15px 30px -12px rgba(0, 0, 0, 0.1);
+      padding: 0.5rem;
+      transition: transform 0.2s ease;
+      border: 1px solid rgba(79, 70, 229, 0.2);
+    }
+
+    .logo-img:hover {
+      transform: scale(1.02);
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(79, 70, 229, 0.12);
+      backdrop-filter: blur(2px);
+      padding: 0.35rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #4f46e5;
+      letter-spacing: -0.2px;
+      margin-bottom: 1.25rem;
+      border: 1px solid rgba(79, 70, 229, 0.2);
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 65%, #7c3aed 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: #334155;
+      max-width: 700px;
+      margin: 0 auto;
+      font-weight: 400;
+    }
+
+    /* cards grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 4rem 0 4rem;
+    }
+
+    .product-card {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 1.8rem 1.6rem 2rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.02);
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      border: 1px solid rgba(203, 213, 225, 0.5);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      backdrop-filter: blur(2px);
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 45px -12px rgba(79, 70, 229, 0.2);
+      border-color: rgba(79, 70, 229, 0.4);
+    }
+
+    .card-icon {
+      font-size: 2.7rem;
+      margin-bottom: 1.25rem;
+      color: #4f46e5;
+      background: linear-gradient(145deg, #eef2ff, #ffffff);
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1.5rem;
+      box-shadow: 0 6px 12px -6px rgba(0, 0, 0, 0.05);
+    }
+
+    .product-card h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.65rem;
+      color: #0f172a;
+    }
+
+    .product-desc {
+      color: #334155;
+      line-height: 1.5;
+      font-size: 0.95rem;
+      margin-bottom: 1.8rem;
+      flex: 1;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      background: #0f172a;
+      color: white;
+      font-weight: 600;
+      padding: 0.9rem 1.2rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      letter-spacing: -0.2px;
+      background: linear-gradient(105deg, #1e293b 0%, #0f172a 100%);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-primary i {
+      transition: transform 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(105deg, #4f46e5, #6366f1);
+      box-shadow: 0 10px 18px -8px rgba(79, 70, 229, 0.4);
+      gap: 0.9rem;
+    }
+
+    .btn-primary:hover i {
+      transform: translateX(4px);
+    }
+
+    /* owner connect section */
+    .connect-section {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(4px);
+      border-radius: 2rem;
+      padding: 2rem 2rem 2.2rem;
+      margin: 2rem 0 2rem;
+      border: 1px solid rgba(203, 213, 225, 0.6);
+      box-shadow: 0 8px 20px -12px rgba(0, 0, 0, 0.08);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 1rem;
+    }
+
+    .section-title i {
+      color: #4f46e5;
+      font-size: 1.6rem;
+    }
+
+    .connect-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.2rem;
+      align-items: center;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: white;
+      padding: 0.8rem 1.4rem;
+      border-radius: 2rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 1px solid #cbd5e1;
+      color: #1e293b;
+      backdrop-filter: blur(2px);
+    }
+
+    .btn-outline i {
+      font-size: 1.1rem;
+    }
+
+    .btn-outline:hover {
+      border-color: #4f46e5;
+      background: #f8fafc;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+      color: #4f46e5;
+    }
+
+    .btn-wa {
+      border-left: 3px solid #25D366;
+    }
+
+    .btn-wa:hover {
+      background: #ebf9ef;
+      border-color: #25D366;
+      color: #075e54;
+    }
+
+    .btn-community {
+      border-left: 3px solid #25D366;
+    }
+
+    .btn-website {
+      border-left: 3px solid #4f46e5;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e2e8f0;
+      color: #5b6e8c;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        padding: 1.5rem 1rem 2.5rem;
+      }
+      h1 {
+        font-size: 2.4rem;
+      }
+      .hero-description {
+        font-size: 1rem;
+      }
+      .product-card h3 {
+        font-size: 1.5rem;
+      }
+      .connect-buttons {
+        justify-content: center;
+      }
+      .section-title {
+        justify-content: center;
+        font-size: 1.4rem;
+      }
+      .logo-img {
+        max-width: 80px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .btn-primary {
+        padding: 0.75rem 1rem;
+      }
+      .connect-section {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero with logo and IM Suite identity -->
+    <div class="hero">
+      <!-- Logo image from logo.jpg -->
+      <div class="logo-wrapper">
+        <img src="logo.jpg" alt="IM Suite Logo" class="logo-img" onerror="this.style.opacity='0.6'; this.alt='IM Suite emblem';">
+      </div>
+      <div class="badge">
+        <i class="fas fa-graduation-cap" style="margin-right: 6px;"></i> Smart ecosystem for FUTA students (General, Engineering, ICE & EEE)
+      </div>
+      <h1>IM Suite</h1>
+      <div class="hero-description">
+        A smart academic ecosystem built to help students study, organize, and learn more efficiently.
+      </div>
+    </div>
+
+    <!-- PRODUCT CARDS: primary entry buttons for each site -->
+    <div class="products-grid">
+      <!-- IM Study Card (unchanged) -->
+      <div class="product-card">
+        <div class="card-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <h3>IM Study</h3>
+        <div class="product-desc">
+          A focused platform for smarter studying and academic productivity without downloading files.
+        </div>
+        <a href="https://im-study.vercel.app" class="btn-primary" target="_blank" rel="noopener noreferrer">
+          Enter IM Study <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- IM Plus Card (updated description with CBT test) -->
+      <div class="product-card">
+        <div class="card-icon">
+          <i class="fas fa-plus-circle"></i>
+        </div>
+        <h3>IM Plus</h3>
+        <div class="product-desc">
+          Extra tools and features designed to improve the student experience using CBT test.
+        </div>
+        <a href="https://im-plus.vercel.app" class="btn-primary" target="_blank" rel="noopener noreferrer">
+          Enter IM Plus <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- IM Summary Card (updated: engineering summaries) -->
+      <div class="product-card">
+        <div class="card-icon">
+          <i class="fas fa-file-alt"></i>
+        </div>
+        <h3>IM Summary</h3>
+        <div class="product-desc">
+          Summary for all courses from 100-300 level, Majorly Engineering based.
+        </div>
+        <a href="https://im-summary.vercel.app" class="btn-primary" target="_blank" rel="noopener noreferrer">
+          Enter IM Summary <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- OWNER CONNECT SECTION: WhatsApp, main site, community -->
+    <div class="connect-section">
+      <div class="section-title">
+        <i class="fas fa-headset"></i>
+        <span>Connect with the owner</span>
+      </div>
+      <p style="color: #475569; margin-bottom: 0.75rem; font-size: 0.9rem;">
+        Questions, feedback, or collaboration? Reach out directly or join the community.
+      </p>
+      <div class="connect-buttons">
+        <!-- Message owner on WhatsApp (exact link) -->
+        <a href="https://wa.me/+2348142442012" class="btn-outline btn-wa" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp" style="color: #25D366;"></i> Message Owner on WhatsApp
+        </a>
+        <!-- Visit main ecosystem website -->
+        <a href="https://eimc.vercel.app" class="btn-outline btn-website" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-globe"></i> Visit Owner website
+        </a>
+        <!-- Join owner WhatsApp community -->
+        <a href="https://chat.whatsapp.com/KnEMW7zYJr1K8Be0naLIYa" class="btn-outline btn-community" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i> Join WhatsApp community
+        </a>
+      </div>
+    </div>
+
+    <!-- subtle footer with extra context -->
+    <div class="footer-note">
+      <span><i class="far fa-copyright"></i> IM Suite — academic ecosystem</span>
+      <span>⚡ Study smarter · CBT ready · Engineering summaries</span>
+      <span><i class="fas fa-heart" style="color: #4f46e5;"></i> designed for students</span>
+    </div>
+  </div>
+</body>
+</html>
